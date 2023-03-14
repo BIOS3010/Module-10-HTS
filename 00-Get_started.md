@@ -13,7 +13,7 @@ Using such Linux servers is thus common in bioinformatics.
 
 For security reasons, we cannot log into the the server directly. First, we need to log in to another server called `login.uio.no`.
 We used this server earlier in the course.
-From `login.uio.no`, we can log in to the server for analyses we will do this week and the coming weeks.
+From `login.uio.no`, we can log in to the server for analyses we will do this week and the coming weeks. **Note that from outside the UiO network you need to have [two factor authentication set up](https://www.uio.no/tjenester/it/brukernavn-passord/2fa/)**.
 
 Depending on your operating system there are different ways to log on to the `login.uio.no` server.
 
