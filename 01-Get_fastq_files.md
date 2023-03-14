@@ -17,13 +17,13 @@ Source "RNA" (SARS-CoV-2 is an RNA virus)
 File type "fastq"  
 Strategy "other"  
 
-Click on one of the results. Probably called something with "SARS-CoV-2" in the name.
+Click on one of the results. 
 
 Answer these questions:  
 ```diff
 ! What does "paired" library layout mean?
 ! How many sequence files can you expect from "paired" data?
-! What is the "Run" accession for the sample you have selected? (begins with SRR...).
+! What is the "Run" accession for the sample you have selected? (begins with SRR... or ERR...).
 ````  
 
 [Back to top](#contents)
