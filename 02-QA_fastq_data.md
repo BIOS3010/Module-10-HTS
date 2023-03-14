@@ -16,7 +16,7 @@ See [this table](https://support.illumina.com/help/BaseSpace_OLH_009008/Content/
 ```
 <br>
 
-Now we will run the program [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) which is a quick and easy way to get basic statistics and lots of useful information about our sequence data. Run the command `fastqc TX-UTA-000336_L001_R*.fastq` (you know what the wildcard (`*`) does right?)  
+Now we will run the program [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) (remeber to activate it on the server) which is a quick and easy way to get basic statistics and lots of useful information about our sequence data. Run the command `fastqc TX-UTA-000336_L001_R*.fastq` (you know what the wildcard (`*`) does right?)  
 
 You should see an output like this:  
 ```
@@ -73,12 +73,14 @@ Not all the information here is relevant for us today. But look at the informati
 
 ## Remove adapters and low quality bases  
 
-The next thing we need to do is to remove sequencing adapters and low quality bases. We will use a program called [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) for this task. Run the following command (it's long so you can copy and paste. Copy all lines together):
+The next thing we need to do is to remove sequencing adapters and low quality bases. We will use a program called [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) for this task. Run the following command (it's long so you can copy and paste (just make sure the filenames are correct!). Copy all lines together):
 
 ```bash
-java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar PE TX-UTA-000336_L001_R1.fastq TX-UTA-000336_L001_R2.fastq \
-TX-UTA-000336_L001_R1_trimmed.fastq TX-UTA-000336_L001_R1_unpaired.fastq \
-TX-UTA-000336_L001_R2_trimmed.fastq TX-UTA-000336_L001_R2_unpaired.fastq \
+# First activate Trimmomatic if you haven't already
+module load Trimmomatic/0.39-Java-11
+java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar PE SRR14253446_1.fastq SRR14253446_2.fastq \
+SRR14253446_1_trimmed.fastq SRR14253446_1_unpaired.fastq \
+SRR14253446_2_trimmed.fastq SRR14253446_2_unpaired.fastq \
 ILLUMINACLIP:/storage/software/software/Trimmomatic/0.39-Java-11/adapters/TruSeq3-PE.fa:2:30:10 \
 SLIDINGWINDOW:4:20 \
 MINLEN:36
