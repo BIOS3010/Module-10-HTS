@@ -16,7 +16,7 @@ See [this table](https://support.illumina.com/help/BaseSpace_OLH_009008/Content/
 ```
 <br>
 
-Now we will run the program [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) (remeber to activate it on the server) which is a quick and easy way to get basic statistics and lots of useful information about our sequence data. Run the command `fastqc TX-UTA-000336_L001_R*.fastq` (you know what the wildcard (`*`) does right?)  
+Now we will run the program [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) (remember to run module load first) which is a quick and easy way to get basic statistics and lots of useful information about our sequence data. Run the command `fastqc TX-UTA-000336_L001_R*.fastq` (you know what the wildcard (`*`) does right?)  
 
 You should see an output like this:  
 ```
