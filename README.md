@@ -1,6 +1,6 @@
 # Module-10-HTS
 
-## Logging in to the server and installing software
+## Logging on to the server and installing software
 
 * Go to [these exercises](00-Get_started.md), and follow the steps. **It's a good idea to do this before the computer lab**
 
