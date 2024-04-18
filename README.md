@@ -12,4 +12,3 @@
 
 * Go to [these exercises](02-QA_fastq_data.md), and follow the steps.
 
-Test
