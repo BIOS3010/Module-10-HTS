@@ -10,7 +10,7 @@ Use basic Linux commands and your knowledge about the fastq file format to answe
 ! How many paired reads are in your files? Does this match with the number you found in the previous exercise?
 ! What is the quality symbol (ASCII character) for the first nucleotide in the first read in the SRR..._1.fastq file?
 ````
-See [this table](https://support.illumina.com/help/BaseSpace_OLH_009008/Content/Source/Informatics/BS/QualityScoreEncoding_swBS.htm)   
+See [this page](https://help.basespace.illumina.com/files-used-by-basespace/quality-scores)   
 ```diff
 ! Can you trust that this nucleotide has been called correctly? Explain why.
 ```
