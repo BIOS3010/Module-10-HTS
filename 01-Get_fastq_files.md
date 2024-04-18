@@ -7,7 +7,7 @@ First, make sure you have done the instructions described in [00-Get_started.md]
 
 As you have probably learned, there are many databases for HTS data. The two most common and comprehensive are probably [ENA - the European Nucleotide Archive](https://www.ebi.ac.uk/ena/browser/home) and the [NCBI SRA database](https://www.ncbi.nlm.nih.gov/sra).
 
-We will use SRA today and download some public HTS data from SARS-CoV-2, the Covid-19 virus. There is a separate SARS-CoV-2 version of the SRA database, open its webpage by following [this link](https://www.ncbi.nlm.nih.gov/sars-cov-2/). Then, click on the link on the middle of the page with a number and "SRA runs" under it. You should now be on a page looking something like this (if not, click [here](https://www.ncbi.nlm.nih.gov/sra/?term=txid2697049%5BOrganism:noexp%5D%20NOT%200[Mbases)):  
+We will use SRA today and download some public HTS data from SARS-CoV-2, the Covid-19 virus. Click on the SRA link above and type in "SARS-CoV-2" in the search box. You should now be on a page looking something like this:  
 <img src="/images/SRA.png" width="700" height="500">   
 
 On the left side it's possible to filter the data. Click the following links:  
@@ -32,7 +32,7 @@ Answer these questions:
 
 We will use a SARS-CoV-2 dataset that is not too big so that our analysis does not take too much time. The run accession numbers for our data is SRR14253446. 
 
-At the top of the page, in the search bar, replace what is there, starting with `txid2697049`, with the SRR number above.
+At the top of the page, in the search bar, replace what is there with the SRR number above.
 
 (Click [here](https://www.ncbi.nlm.nih.gov/sra/?term=SRR14253446) if you have trouble)
 
@@ -45,11 +45,11 @@ Click on the link starting with "SRR..." in the table at the bottom. This takes 
   
 The SRA database stores data in files ending with .sra. These needs to be downloaded using something called the [SRA-Toolkit](https://hpc.nih.gov/apps/sratoolkit.html). However, all data on SRA is mirrored to the ENA database and often files are more easily available for download from here. 
 
-Go to [ENA](https://www.ebi.ac.uk/ena/browser/home) and search for SRR14253446 at the top of the page. This should take you to a page with links to two fastq-files (SRR14253446_1.fastq.gz and SRR14253446_2.fastq.gz). Right click on the links and copy the link address. In the terminal where you have logged into the server (!) type the command `wget` and paste the link. Something like this: `wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR142/046/SRR14253446/SRR14253446_1.fastq.gz`. Press enter. This should download the first fastq file. Do the same for the second. After this is done type `ls`. You should now have two new files ending with `fastq.gz`.  
+Go to [ENA](https://www.ebi.ac.uk/ena/browser/home) and search for SRR14253446 at the top of the page. This should take you to a page with links to two fastq-files (SRR14253446_1.fastq.gz and SRR14253446_2.fastq.gz). Right click on the links and copy the link address. In the terminal where you have logged on to the server type the command `wget` and paste the link. Something like this: `wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR142/046/SRR14253446/SRR14253446_1.fastq.gz`. Press enter. This should download the first fastq file. Do the same for the second. After this is done type `ls`. You should now have two new files ending with `fastq.gz`.  
 
 
 ## Decompress the fastq files
-The `.gz` in the filename indicates that the files are compressed using the gzip program. In the the unix module from the first week of this course there was an exercise about uncompressing `.gz` files. Use the information there to uncompress both files.
+The `.gz` in the filename indicates that the files are compressed using the gzip program. In the the unix module from the first week of this course there was an exercise about decompressing `.gz` files. Use the information there to decompress both files.
 
 After this is done type `ls` again. You should now have two new files ending with `.fastq`.  
 
