@@ -57,7 +57,9 @@ Double click the two `.html` files to open them in a web browser. You should see
 
 <img src="/images/fastqc.png"> <br>   
 
-Not all the information here is relevant for us today. But look at the information in "Basic Statistics", "Per base sequence quality" and "Adapter Content" and answer the following questions:
+Not all the information here is relevant for us today. But look at the information in "Basic Statistics", "Per base sequence quality" and "Adapter Content" and answer the following questions:  
+
+NB! For some reason it seems like NCBI/SRA has changed the quality encoding so that all nucleotides have the same quality score of 30 (or "?" in the fastq file). Therefore, the quality score graph in the html file is not very informative. You can look at the image below instead.
 
 ```diff
 ! How many sequences/reads are in your file? Is this what you expected?
