@@ -12,7 +12,6 @@ Using such Linux servers is thus common in bioinformatics.
 ### Step 1: logging on to login.uio.no
 
 For security reasons, we cannot log into the the server directly. First, we need to log in to another server called `login.uio.no`.
-We used this server earlier in the course.
 From `login.uio.no`, we can log in to the server for analyses we will do this week and the coming weeks. **Note that from outside the UiO network you need to have [two factor authentication set up](https://www.uio.no/tjenester/it/brukernavn-passord/2fa/)**.
 
 Depending on your operating system there are different ways to log on to the `login.uio.no` server.
@@ -34,7 +33,7 @@ You should see a message `Welcome to login.uio.no!`
 Next, see below under "Logging on to the course server".
 
 **Windows**  
-On windows we recommend that you install [GitBash](https://gitforwindows.org/). This gives you a terminal with unix-style commands available on your local machine. You can then log on to the `login.uio.no` server with the same commands as above.  
+If you have a program called **Terminal** installed already, use that one. If not, we recommend that you install [GitBash](https://gitforwindows.org/). This gives you a terminal with unix-style commands available on your local machine. You can then log on to the `login.uio.no` server with the same commands as above.  
 
 You should see a message `Welcome to login.uio.no!`
 
@@ -42,8 +41,7 @@ You should see a message `Welcome to login.uio.no!`
 
 Once you are logged in to `login.uio.no`, you can log in to the analysis server:
 
-* **odd-numbered groups (1, 3, 5, ...)** do this: `ssh username@itf-appn-test01.hpc.uio.no`
-* **even-numbered groups (2, 4, 6, ...)** do this `ssh username@itf-appn-test02.hpc.uio.no`
+`ssh <username>@bioint02.hpc.uio.no`
 
 You may get a message like this:
 
@@ -59,6 +57,10 @@ Again, write your password when asked for it.
 When you have logged on to the server, type the command `pwd`. You should see something like this
 <img src="/images/terminal_2.png" width="500" height="300"> <p>  
 
+## Loggin in in one step  
+It's also possible to log in to the server via login.uio.no in one single step. But you need to type your password twice.  
+`ssh -J <username>@login.uio.no <username>@bioint02.hpc.uio.no`  
+
 [Back to top](#contents)
 
 
@@ -70,22 +72,22 @@ Installing software on a Linux server like the ones we are using in this class c
   * to go back to the terminal prompt, press the `q` key
 * To activate a specific program, run `module load software_name/version`
 
-For the rest of the HTS module, we will use `fastqc` and `trimmomatic`. Here, we will only test that you can load the corresponding modules and test the progam.
+For the rest of the HTS module, we will use `sra-tools`, `fastqc` and `fastp`. These are actually not pre-installed, and we will use the package manager `mamba` to install them. Do the following:  
+```bash
+# Activate the conda software
+module load Miniconda3/4.9.2
 
-For `fastqc`, run:
+# Create a new environment that will hold software specific for this module
+conda create --name Module10
+conda activate Module10
 
+# Install mamba which will help us to install other software correctly
+conda install mamba
+
+# Install the software we need for this module
+mamba install bioconda::sra-tools
+mamba install bioconda::fastqc
+mamba install bioconda::fastp
 ```
-module load FastQC/0.11.9-Java-11
-fastqc --version
-```
-
-You should see this as output:
-```
-FastQC v0.11.9
-```
-
-Now we do the same for Trimmomatic: use `module avail trimmomatic` to figure out the installed version(s). If there is more than one, use the latest version.
-Load the module and *read the instructions on how to use the program carefully!* Find out which version we are using by running trimmomatic with `-version` as only parameter.
-
 
 [Back to top](#contents)

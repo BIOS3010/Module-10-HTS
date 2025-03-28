@@ -1,5 +1,3 @@
-It seems that the SRA database have changed their default quality encoding so that all nucleotides have quality of 30 ('?' symbol). This is probably to save disk space. But this makes some of the examples in the exercises less informative. I will therefore use slightly different examples here to get my point across.
-
 ```diff
 ! What does "paired" library layout mean?
 ```
@@ -54,20 +52,14 @@ In the fastq file format, each sequence (or read) covers four lines. So in the f
 ```
 
 ```bash
-head -n 4 SRR14253446_1.fastq
-@SRR14253446.1 1/1
+(Module10) [jonbra@bioint02 Module10]$ zcat SRR14253446_1.fastq.gz | head -n 4
+@SRR14253446.1 1 length=250
 TGGTGAATACAGTCATGTAGTTGCCTTTAATACTTTACTATTCCTTATGTCATTCACTGTACTCTGTTTAACACCAGTTTACTCATTCTTACCTGGTGTTTATTCTGTTATTTACTTGTACTTGACATTTTATCTTACTAATGATGTTTCTTTTTTAGCACATATTCAGTGGATGGTTATGTTCACACCTTTAGTACCTTTCTGGATAACAATTGCTTATATCATTTGTATTTCCACAAAGCATTTCTAT
-+
-??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
++SRR14253446.1 1 length=250
+>ABAA@BFFFFFFDDGGGCGFGFFHHHHHG5FGGHHHHHHFGHHHHGHBDGHH5FG5GG5DGHFGGHHFHDHFH?ECFHHFHHHHHFHFHFHBEHHBFGEHFHHBGGEGFHHHH@BFDGHHGDDHGGFGFBGF4EF4FHHFFGFFH4GFHHHHHHGHFFGHHHEGHHHHEHH3FGEGD3FGDGGHHGFDCHDGFDGHFHHHHHFBFGHFHHF1DBDGHFHDGF1FHHHHBFDHF<FFBFGCHFHHHHHGG
+
 ```
-As I mentioned, all the nucleotides have quality of 30 ('?' symbol). Here's another example:
-```
-@M07180:90:000000000-KM5N9:1:1101:14924:1034 1:N:0:CACATCCT+GCTGCACT
-GCGGGTATTGGAATCCATAAGCGGAACCCATCGTCTCAATTGACAACTTCTGTATCACGTCATATAGGGCGCGTTTCTCGCAGACACGCACCCCCAGGTCAGGGTATACAATGNGGCGAGCGGGCTNGCGGCCCCCCCTANCGGGGTCCANGCANANCACCTCNTTCNTCGCCATGATGGTAGTTGGAATTGGAGTTGTAGTGTCTTCCAGCAAGTCCTCCCAGAC
-+
-CCCCCGGGGGGGGFFGGGGGGGEG@FDGE7CEC<EFGFGGGGGGGGGGFFGGGFDE<FGDFCFFFGGGGGEGD@CFGGFGGGGGGGGEGGGGFGGGGGGFGGGGGGF?AEGGA#9+AFF@CGGGDE#38>6=:FGEGGGF#3@DFFEDF?#11*#6#*6;85=#4=/#4=FFGG7DFGFGF@9ECGGGGGGGF;>02+:CFGFG6FF=FFFFFFGFFC?FFF?F:0
-```
-Here the quality symbol for the first nucleotide is 'C'. C has the ASCII value of 67. This means a Q-score of 34. A Q-score of 30 means 0.001 probability of a wrongly called nucleotide. 34 is even better than this. So yes, I would trust this nucleotide.   
+Here the quality symbol for the first nucleotide is '>'. > has the ASCII value of 62. This means a Q-score of 29. A Q-score of 30 means 0.001 probability of a wrongly called nucleotide. We often use 30 as a cut-off, but I would say that we can trust this nucleotide.   
 
 After FastQC: 
 

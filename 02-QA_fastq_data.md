@@ -16,15 +16,18 @@ See [this page](https://help.basespace.illumina.com/files-used-by-basespace/qual
 ```
 <br>
 
-Now we will run the program [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) (remember to run module load first) which is a quick and easy way to get basic statistics and lots of useful information about our sequence data. Run the command `fastqc TX-UTA-000336_L001_R*.fastq` (you know what the wildcard (`*`) does right?)  (NB: First run `module load FastQC/0.11.9-Java-11`)
+Now we will run the program [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) (remember to run module load first) which is a quick and easy way to get basic statistics and lots of useful information about our sequence data. Run the command `fastqc SRR14253446_*.fastq` (you know what the wildcard (`*`) does right?)  (NB: Remember to activate the Module10 conda environment first: `conda activate Module10`)
 
 You should see an output like this:  
 ```
-Started analysis of TX-UTA-000336_L001_R1.fastq
-Approx 5% complete for TX-UTA-000336_L001_R1.fastq
-Approx 10% complete for TX-UTA-000336_L001_R1.fastq
-Approx 15% complete for TX-UTA-000336_L001_R1.fastq
-Approx 20% complete for TX-UTA-000336_L001_R1.fastq
+(Module10) [jonbra@bioint02 Module10]$ fastqc SRR14253446_*
+application/gzip
+application/gzip
+Started analysis of SRR14253446_1.fastq.gz
+Approx 5% complete for SRR14253446_1.fastq.gz
+Approx 10% complete for SRR14253446_1.fastq.gz
+Approx 15% complete for SRR14253446_1.fastq.gz
+Approx 20% complete for SRR14253446_1.fastq.gz
 ...
 ```
 
@@ -39,17 +42,16 @@ Navigate to, or create, an appropriate folder to store the files you will downlo
 
 First, on the *server* terminal, type `pwd` to display the path to you location and `ls` to find the name of the file(s) to copy. Then, in the other terminal window which is on *your local machine*, type the following command
 * replace *username* with your uio username
-* even-numbered groups (2, 4, 6, ...) use test02 instead of test01
 * replace *path/to/fastq/file* with the output from `pwd`:    
 
 ```bash
-scp -J username@login.uio.no 'username@itf-appn-test01.hpc.uio.no:path/to/fastq/file/*.html' .
+scp -J <username>@login.uio.no '<username>@bioint02.hpc.uio.no:path/to/fastq/file/*.html' .
 ```
 
 NOTES
-* The command has both `login.uio.no` and the `itf-appn-test` servers as we need to go through the first one to get access to the second one.
+* The command has both `login.uio.no` and the `bioint02` servers as we need to go through the first one to get access to the second one.
 * The dot `.` at the end indicates 'the current folder' as destination.
-*  The quotation marks around `username@itf-appn-test01.hpc.uio.no:path/to/fastq/file/*.html` are needed on some operating systems to make sure the dilcard expnasion `*` works.
+*  The quotation marks around `username@bioint02.uio.no:path/to/fastq/file/*.html` are needed on some operating systems to make sure the dilcard expnasion `*` works.
 
 Type your UiO password.
 
@@ -75,30 +77,20 @@ Not all the information here is relevant for us today. But look at the informati
 
 ## Remove adapters and low quality bases  
 
-The next thing we need to do is to remove sequencing adapters and low quality bases. We will use a program called [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) for this task. Run the following command (it's long so you can copy and paste (just make sure the filenames are correct!). Copy all lines together):
+The next thing we need to do is to remove sequencing adapters and low quality bases. We will use a program called [fastp](https://github.com/OpenGene/fastp) for this task. Fastp will automatically detect and remove the most commonly used sequencing adapters. In addition it will remove low quality bases from both ends of the reads. 
 
 ```bash
-# First activate Trimmomatic if you haven't already
-module load Trimmomatic/0.39-Java-11
-java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar PE SRR14253446_1.fastq SRR14253446_2.fastq \
-SRR14253446_1_trimmed.fastq SRR14253446_1_unpaired.fastq \
-SRR14253446_2_trimmed.fastq SRR14253446_2_unpaired.fastq \
-ILLUMINACLIP:/storage/software/software/Trimmomatic/0.39-Java-11/adapters/TruSeq3-PE.fa:2:30:10 \
-SLIDINGWINDOW:4:20 \
-MINLEN:36
+fastp \
+-i SRR14253446_1.fastq.gz \
+-I SRR14253446_2.fastq.gz \
+-o SRR14253446_1_trimmed.fastq.gz \
+-O SRR14253446_2_trimmed.fastq.gz
 ```
 
-* `PE` tells Trimmomatic that we have paired reads.
-* Then we specify the two input fastq files
-* next we tell the program what file names to use for the trimmed paired and unpaired reads (if an entire read is removed from one of the files, then the corresponding read pair in the other file will be put into the "unpaired" files).  
-* `ILLUMINACLIP` specifies how adapters will be removed.  
-* `SLIDINGWINDOW:4:20` means that Trimmomatic will use a window of 4 bases and cut the read when the average base quality drops below 20.  
-* `MINLEN:36` indicates that only reads longer than 36 bp after adapters and low quality bases are removed will be saved.  
-
-Trimmomatic will print some information about the run to the screen.
+Fastp will print some information about the run to the screen.
 ```diff
-! How many paired reads are present after trimming?
-! How many sequences were removed?
+! How many paired reads were present after trimming?
+! How many reads were removed?
 ```  
 
 <br>  

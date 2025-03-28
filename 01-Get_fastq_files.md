@@ -5,6 +5,8 @@
 ## Find data  
 First, make sure you have done the instructions described in [00-Get_started.md](00-Get_started.md).  
 
+Then create a folder on your home area called `Module10` and enter it. We will do all the exercises inside this folder.  
+
 As you have probably learned, there are many databases for HTS data. The two most common and comprehensive are probably [ENA - the European Nucleotide Archive](https://www.ebi.ac.uk/ena/browser/home) and the [NCBI SRA database](https://www.ncbi.nlm.nih.gov/sra).
 
 We will use SRA today and download some public HTS data from SARS-CoV-2, the Covid-19 virus. Click on the SRA link above and type in "SARS-CoV-2" in the search box. You should now be on a page looking something like this:  
@@ -43,14 +45,12 @@ Click on the link starting with "SRR..." in the table at the bottom. This takes 
 ! "Spots" is the number of sequenced reads (it refers to the read clusters on the sequencing array). Write down how many reads (spots) have been sequenced for your sample and the size of the file.  
 ````  
   
-The SRA database stores data in files ending with .sra. These needs to be downloaded using something called the [SRA-Toolkit](https://hpc.nih.gov/apps/sratoolkit.html). However, all data on SRA is mirrored to the ENA database and often files are more easily available for download from here. 
+The SRA database stores data in files ending with .sra. These needs to be downloaded using something called the [SRA-Toolkit](https://hpc.nih.gov/apps/sratoolkit.html). Use this command: (The argument `--split-3` splits the file so that reads for pair 1 and pair 2 ends up in different files). 
 
-Go to [ENA](https://www.ebi.ac.uk/ena/browser/home) and search for SRR14253446 at the top of the page. This should take you to a page with links to two fastq-files (SRR14253446_1.fastq.gz and SRR14253446_2.fastq.gz). Right click on the links and copy the link address. In the terminal where you have logged on to the server type the command `wget` and paste the link. Something like this: `wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR142/046/SRR14253446/SRR14253446_1.fastq.gz`. Press enter. This should download the first fastq file. Do the same for the second. After this is done type `ls`. You should now have two new files ending with `fastq.gz`.  
+`fastq-dump SRR14253446 --split-3 --gzip`
 
+ You should now have two new files ending with `fastq.gz`.  
 
-## Decompress the fastq files
-The `.gz` in the filename indicates that the files are compressed using the gzip program. In the the unix module from the first week of this course there was an exercise about decompressing `.gz` files. Use the information there to decompress both files.
-
-After this is done type `ls` again. You should now have two new files ending with `.fastq`.  
+The `.gz` in the filename indicates that the files are compressed using the gzip program. Fastq files are often large, and it's a good idea to keep them compressed to save space. Most bioinformatics tools can handle compressed files directly. If you need to decompress the files, you can use the `gunzip` command. And if you want to inspect the files in the terminal you can use a combination of `zcat` and `less`.
 
 [Back to top](#contents)
