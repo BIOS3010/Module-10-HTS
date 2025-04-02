@@ -84,7 +84,7 @@ conda create --name Module10
 conda activate Module10
 
 # Install mamba which will help us to install other software correctly
-conda install mamba
+conda install conda-forge::mamba
 
 # Install the software we need for this module
 mamba install bioconda::sra-tools
