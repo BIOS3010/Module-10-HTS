@@ -81,6 +81,8 @@ module load Miniconda3/4.9.2
 # Initialize conda (need only do once)
 conda init bash
 
+# Then you need to log out and back in again 
+
 # Create a new environment that will hold software specific for this module
 conda create --name Module10
 conda activate Module10
