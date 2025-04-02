@@ -72,7 +72,7 @@ Installing software on a Linux server like the ones we are using in this class c
   * to go back to the terminal prompt, press the `q` key
 * To activate a specific program, run `module load software_name/version`
 
-For the rest of the HTS module, we will use `sra-tools`, `fastqc` and `fastp`. These are actually not pre-installed, and we will use the package manager `mamba` to install them. Do the following: 
+For the rest of the HTS module, we will use `sra-tools`, `fastqc` and `fastp`. `sra-tools` and `fastqc` are pre-installed on the server. But unfortunately not `fastp`. In order to install this software we will use `conda`, which is a so-called "package manager". Do the following: 
 
 ```bash
 # Activate the conda software
@@ -85,49 +85,25 @@ conda init bash
 conda create --name Module10
 conda activate Module10
 
-# Install mamba which will help us to install other software correctly
-conda install conda-forge::mamba
+# Install fastp
+conda install bioconda::fastp
+```
 
-# Then initialize mamba (need only do once)
-eval "$(mamba shell hook --shell bash)"
+And then activate the other software: 
+```bash
+# First enable software specific for BIOS3010
+module use /home/BIOS3010/software/modules/all/:/opt/software/BIOS3010/modules/all/
 
-# Install the software we need for this module
-mamba install bioconda::sra-tools
-mamba install bioconda::fastqc
-mamba install bioconda::fastp
+# See available software
+module avail
+
+# Activate the software we need
+module load SRA-Toolkit/2.10.9-gompi-2020b
+module load FastQC/0.11.9-Java-11
 ```
 
 [Back to top](#contents)  
 
-If the mamba installation does not work. You can do this: 
-
-First:  
-`module use /home/BIOS3010/software/modules/all/:/opt/software/BIOS3010/modules/all/`  
-`module load SRA-Toolkit/2.10.9-gompi-2020b`  
-`module load FastQC/0.11.9-Java-11`
-
-Then:  
-```bash
-# Activate the conda software
-module load Miniconda3/4.9.2
-
-# Create a new environment that will hold software specific for this module
-conda create --name Module10
-conda activate Module10
-
-# Install mamba which will help us to install other software correctly
-conda install conda-forge::mamba
-
-# Install the software we need for this module
-mamba install bioconda::fastp
-```
- If you exit the server, when you log in again you need to type:  
-```bash
-module load Miniconda3/4.9.2
-conda activate Module10
-module load SRA-Toolkit/2.10.9-gompi-2020b
-module load FastQC/0.11.9-Java-11
-```
 
 
 
