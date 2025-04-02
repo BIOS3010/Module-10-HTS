@@ -73,11 +73,13 @@ Installing software on a Linux server like the ones we are using in this class c
 * To activate a specific program, run `module load software_name/version`
 
 For the rest of the HTS module, we will use `sra-tools`, `fastqc` and `fastp`. These are actually not pre-installed, and we will use the package manager `mamba` to install them. Do the following: 
-(NB: If you're asked to initialize conda you need to type `conda init bash` and then log out and back in again).  
 
 ```bash
 # Activate the conda software
 module load Miniconda3/4.9.2
+
+# Initialize conda (need only do once)
+conda init bash
 
 # Create a new environment that will hold software specific for this module
 conda create --name Module10
@@ -85,6 +87,9 @@ conda activate Module10
 
 # Install mamba which will help us to install other software correctly
 conda install conda-forge::mamba
+
+# Then initialize mamba (need only do once)
+eval "$(mamba shell hook --shell bash)"
 
 # Install the software we need for this module
 mamba install bioconda::sra-tools
