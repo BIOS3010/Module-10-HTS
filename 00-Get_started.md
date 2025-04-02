@@ -99,6 +99,7 @@ If the mamba installation does not work. You can do this:
 First:  
 `module use /home/BIOS3010/software/modules/all/:/opt/software/BIOS3010/modules/all/`  
 `module load SRA-Toolkit/2.10.9-gompi-2020b`  
+`module load FastQC/0.11.9-Java-11`
 
 Then:  
 ```bash
