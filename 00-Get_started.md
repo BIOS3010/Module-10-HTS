@@ -92,4 +92,11 @@ mamba install bioconda::fastqc
 mamba install bioconda::fastp
 ```
 
-[Back to top](#contents)
+[Back to top](#contents)  
+
+If the mamba installation does not work. You can do this:  
+`module use /home/BIOS3010/software/modules/all/:/opt/software/BIOS3010/modules/all/`  
+`module load SRA-Toolkit/2.10.9-gompi-2020b`  
+
+
+
