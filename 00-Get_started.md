@@ -94,9 +94,29 @@ mamba install bioconda::fastp
 
 [Back to top](#contents)  
 
-If the mamba installation does not work. You can do this:  
+If the mamba installation does not work. You can do this: 
+
+First:  
 `module use /home/BIOS3010/software/modules/all/:/opt/software/BIOS3010/modules/all/`  
 `module load SRA-Toolkit/2.10.9-gompi-2020b`  
+
+Then:  
+```bash
+# Activate the conda software
+module load Miniconda3/4.9.2
+
+# Create a new environment that will hold software specific for this module
+conda create --name Module10
+conda activate Module10
+
+# Install mamba which will help us to install other software correctly
+conda install conda-forge::mamba
+
+# Install the software we need for this module
+mamba install bioconda::fastp
+```
+
+
 
 
 
