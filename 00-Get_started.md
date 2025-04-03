@@ -1,6 +1,7 @@
 ## Contents
 - [Logging on to the server](#logging-on-to-the-server)
-- [Installing and using software on a Linux system](#installing-and-using-software-on-a-linux-system)
+- [Installing and using software on a Linux system](#installing-and-using-software-on-a-linux-system)  
+- [When logging back on to the server](#when-logging-back-on-to-the-servere)
 
 
 ## Logging on to the server
@@ -106,7 +107,19 @@ module load FastQC/0.11.9-Java-11
 
 [Back to top](#contents)  
 
+## When logging back on to the server  
+If you have everything set-up and working on the server, and when you log back on after being logged out you need to do this:  
+```bash
+# Make sure conda is active
+module load Miniconda3/4.9.2
 
+# Activate the conda environment (change the Module10 name is you used a different name)
+conda activate Module10
 
+# Activate the BIOS3010 software
+module use /home/BIOS3010/software/modules/all/:/opt/software/BIOS3010/modules/all/
 
-
+# And then load the specific modules you need
+module load SRA-Toolkit/2.10.9-gompi-2020b
+module load FastQC/0.11.9-Java-11
+```
