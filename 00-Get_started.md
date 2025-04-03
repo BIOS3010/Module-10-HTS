@@ -1,7 +1,7 @@
 ## Contents
 - [Logging on to the server](#logging-on-to-the-server)
 - [Installing and using software on a Linux system](#installing-and-using-software-on-a-linux-system)  
-- [When logging back on to the server](#when-logging-back-on-to-the-servere)
+- [When logging back on to the server](#when-logging-back-on-to-the-server)
 
 
 ## Logging on to the server
@@ -123,3 +123,5 @@ module use /home/BIOS3010/software/modules/all/:/opt/software/BIOS3010/modules/a
 module load SRA-Toolkit/2.10.9-gompi-2020b
 module load FastQC/0.11.9-Java-11
 ```
+
+[Back to top](#contents)  
