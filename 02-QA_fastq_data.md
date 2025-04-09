@@ -16,7 +16,7 @@ See [this page](https://help.basespace.illumina.com/files-used-by-basespace/qual
 ```
 <br>
 
-Now we will run the program [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) (remember to run module load first) which is a quick and easy way to get basic statistics and lots of useful information about our sequence data. Run the command `fastqc SRR14253446_*.fastq` (you know what the wildcard (`*`) does right?)  (NB: Remember to activate the Module10 conda environment first: `conda activate Module10`)
+Now we will run the program [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) (remember to run module load first) which is a quick and easy way to get basic statistics and lots of useful information about our sequence data. Run the command `fastqc SRR14253446_*.fastq` (you know what the wildcard (`*`) does right?)  
 
 You should see an output like this:  
 ```
